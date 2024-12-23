@@ -1,0 +1,139 @@
+﻿@model List<test2.Models.HocPhan>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách học phần đã đăng ký</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 15px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+            table th, table td {
+                padding: 12px;
+                text-align: left;
+                border-bottom: 1px solid #ddd;
+            }
+
+            table th {
+                background-color: #4CAF50;
+                color: white;
+            }
+
+            table tr:hover {
+                background-color: #f1f1f1;
+            }
+
+        .no-courses-message {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #f44336;
+            font-weight: bold;
+        }
+
+        .btn-back {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+            .btn-back:hover {
+                background-color: #45a049;
+            }
+
+        .btn-delete {
+            background-color: #f44336;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            .btn-delete:hover {
+                background-color: #e53935;
+            }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Danh sách học phần đã đăng ký</h1>
+    </header>
+
+    <div class="container">
+        @if (Model != null && Model.Any())
+        {
+            <table>
+                <thead>
+                    <tr>
+                        <th>Mã học phần</th>
+                        <th>Tên học phần</th>
+                        <th>Số tín chỉ</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var hocPhan in Model)
+                    {
+                        <tr>
+                            <td>@hocPhan.MaHp</td>
+                            <td>@hocPhan.TenHp</td>
+                            <td>@hocPhan.SoTinChi</td>
+                            <td>
+                                <form method="post" action="@Url.Action("DeleteCourse", "HocPhan")">
+                                    <input type="hidden" name="studentId" value="@ViewData["StudentId"]" />
+                                    <input type="hidden" name="maHp" value="@hocPhan.MaHp" />
+                                    <button type="submit" class="btn-delete">Xóa</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p class="no-courses-message">Không có học phần nào được đăng ký cho sinh viên này.</p>
+        }
+
+        <a href="@Url.Action("Index", "Home")" class="btn-back">Quay lại trang chủ</a>
+    </div>
+</body>
+</html>

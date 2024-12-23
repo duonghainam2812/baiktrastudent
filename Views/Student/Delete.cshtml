@@ -1,0 +1,19 @@
+﻿@model test2.Models.SinhVien
+
+@{
+    ViewData["Title"] = "Xóa sinh viên";
+}
+
+<h1>Xóa sinh viên</h1>
+
+<h3>Bạn có chắc chắn muốn xóa sinh viên này không?</h3>
+<div>
+    <p><strong>MSSV:</strong> @Model.MaSv</p>
+    <p><strong>Họ tên:</strong> @Model.HoTen</p>
+</div>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="MaSv" />
+    <button type="submit" class="btn btn-danger">Xóa</button>
+    <a asp-action="Index" class="btn btn-secondary">Hủy</a>
+</form>

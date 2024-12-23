@@ -1,0 +1,120 @@
+﻿@{
+    ViewData["Title"] = "Đăng ký học phần";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7fc;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin: 0;
+            font-weight: bold;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+            .form-container h2 {
+                text-align: center;
+                font-size: 1.8rem;
+                color: #333;
+            }
+
+        label {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            display: block;
+            color: #333;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+            button:hover {
+                background-color: #45a049;
+            }
+
+        .message {
+            color: red;
+            font-size: 1rem;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 1rem;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Chào mừng bạn đến với hệ thống đăng ký học phần</h1>
+    </header>
+
+    <div class="form-container">
+        <h2>Đăng ký học phần</h2>
+        <form method="post" action="@Url.Action("ViewRegisteredCourses", "HocPhan")">
+            <label for="studentId">Mã số sinh viên:</label>
+            <input type="text" id="studentId" name="studentId" required placeholder="Nhập mã số sinh viên của bạn" />
+            <button type="submit">Xác nhận</button>
+        </form>
+    </div>
+
+    @if (TempData["Message"] != null)
+    {
+        <div class="message">
+            @TempData["Message"]
+        </div>
+    }
+
+    <div class="footer">
+        <p>Hệ thống đăng ký học phần - Trường Đại học XYZ</p>
+    </div>
+
+</body>
+</html>

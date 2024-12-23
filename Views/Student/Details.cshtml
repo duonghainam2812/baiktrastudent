@@ -1,0 +1,22 @@
+﻿@model test2.Models.SinhVien
+
+@{
+    ViewData["Title"] = "Chi tiết sinh viên";
+}
+
+<h1>Chi tiết sinh viên</h1>
+
+<div>
+    <p><strong>MSSV:</strong> @Model.MaSv</p>
+    <p><strong>Họ tên:</strong> @Model.HoTen</p>
+    <p><strong>Giới tính:</strong> @Model.GioiTinh</p>
+    <p><strong>Ngày sinh:</strong> @Model.NgaySinh?.ToString("dd/MM/yyyy")</p>
+    <p><strong>Mã ngành:</strong> @Model.MaNganh</p>
+    @if (!string.IsNullOrEmpty(Model.Hinh))
+    {
+        <img src="@Model.Hinh" alt="Hình ảnh" width="200" />
+    }
+</div>
+
+<a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+<a asp-action="Edit" asp-route-id="@Model.MaSv" class="btn btn-warning">Chỉnh sửa</a>

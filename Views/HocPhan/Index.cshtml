@@ -1,0 +1,56 @@
+﻿@model IEnumerable<test2.Models.HocPhan>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách học phần</title>
+    <!-- Thêm Bootstrap từ CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEJf3QnBd0JmP4Zh4LNhkITFfgzCz5jcOsxxw+kCTdRPygwOlT5A0wzK6nBxF" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Danh sách học phần</h1>
+
+        @if (Model.Any())
+        {
+            <table class="table table-striped table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Mã học phần</th>
+                        <th>Tên học phần</th>
+                        <th>Số tín chỉ</th>
+                        <th>Đăng ký</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var hocPhan in Model)
+                    {
+                        <tr>
+                            <td>@hocPhan.MaHp</td>
+                            <td>@hocPhan.TenHp</td>
+                            <td>@hocPhan.SoTinChi</td>
+                            <td>
+                                <a href="@Url.Action("Register", "HocPhan", new { maHp = hocPhan.MaHp })" class="btn btn-primary">Đăng ký</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <div class="alert alert-warning text-center">
+                Không có học phần nào.
+            </div>
+        }
+    </div>
+
+    <!-- Thêm Bootstrap JS từ CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-pzjw8f+ua7Kw1TIq0v8FqRxFfX6yJ/Zf8diFx9BfGp1ZZl2JyZ2VgdyWXmkmvclG" crossorigin="anonymous"></script>
+</body>
+
+</html>
